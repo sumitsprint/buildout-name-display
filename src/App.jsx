@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+// import axios from "axios";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+const [formData, setFormData] = useState({
+  firstName: "",
+  lastName: ""
+});
+const [isSubmit, setIsSubmit] = useState(false);
+const handleChange = (e) => {
+const {name, value} = e.target;
+setFormData({...formData, [name]: value});
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
 }
+const handleSubmit = (e) => {
+e.preventDefault();
 
-export default App
+  setIsSubmit(true);
+
+
+}
+return(
+  <div className="App">
+    <h1 style = {{margin: "50px 0 50px 15px"}} >Full Name Display</h1>
+<div>
+  <form onSubmit={handleSubmit}>
+  <label>First Name:
+    <input
+    name = "firstName"
+    type="text"
+    value = {formData.firstName}
+    placeholder="Type your First name"
+    onChange={handleChange}
+    required
+    />
+  </label>
+  <br />
+  <br />
+  <label>Last Name:
+    <input
+    name = "lastName"
+    type="text"
+    value = {formData.lastName}
+    placeholder="Type your Last name"
+    onChange= {handleChange}
+    required
+    />
+  </label>
+  <br />
+  <br />
+  <button type="submit" >Submit</button>
+  </form>
+</div>
+<div>
+ { isSubmit && <p>Full Name: {formData.firstName} {formData.lastName}</p>}
+</div>
+  </div>
+);
+
+
+
+
+}
