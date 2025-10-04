@@ -22,7 +22,7 @@ e.preventDefault();
 return(
   <div className="App">
     <h1 style = {{margin: "50px 0 50px 15px"}} >Full Name Display</h1>
-<div>
+
   <form onSubmit={handleSubmit}>
   <label>First Name:
     <input
@@ -50,11 +50,13 @@ return(
   <br />
   <button type="submit" >Submit</button>
   </form>
-</div>
-<div>
- { isSubmit && <p>Full Name: {formData.firstName} {formData.lastName}</p>}
-</div>
+  
+ { isSubmit && ( <p>Full Name: {formData.firstName} {formData.lastName}</p>)}
+
+
+
   </div>
+  
 );
 
 
